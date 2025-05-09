@@ -1,0 +1,3 @@
+C:\Users\yhxsa\RiderProjects\PdfSplitterAndRenaimer\PdfSplitterAndRenaimer\bin\Release\net8.0\linux-x64\publish\PdfSplitterAndRenaimer.pdb
+C:\Users\yhxsa\RiderProjects\PdfSplitterAndRenaimer\PdfSplitterAndRenaimer\bin\Release\net8.0\linux-x64\publish\input.pdf
+C:\Users\yhxsa\RiderProjects\PdfSplitterAndRenaimer\PdfSplitterAndRenaimer\bin\Release\net8.0\linux-x64\publish\PdfSplitterAndRenaimer

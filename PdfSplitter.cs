@@ -1,38 +1,155 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.IO;
+using System.Linq;
 using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Parser;
+using iText.Kernel.Pdf.Canvas.Parser.Listener;
 
-namespace PdfSplitterAndRenaimer;
 
-public class PdfSplitter
+// Console.WriteLine($"Estratto: {estratto}");
+namespace PdfSplitterAndRenaimer
 {
-    static void Main()
+    public class PdfSplitter
     {
-        
-        string inputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "input.pdf");
-        
-        string outputDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "output");
-
-        if (!Directory.Exists(outputDir))
-            Directory.CreateDirectory(outputDir);
-
-        PdfDocument pdfDoc = new PdfDocument(new PdfReader(inputPath));
-        int totalPages = pdfDoc.GetNumberOfPages();
-
-        for (int i = 1; i <= totalPages; i++)
+        static void Main()
         {
-            string outputPath = Path.Combine(outputDir, $"pagina_{i}.pdf");
+            try
+            {
+                string inputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "input.pdf");
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string outputDir = Path.Combine(desktopPath, "PDF_Splittati");
 
-            // Crea nuovo documento PDF
-            PdfDocument newDoc = new PdfDocument(new PdfWriter(outputPath));
-            // Usa PdfSplitter per copiare la singola pagina
-            pdfDoc.CopyPagesTo(i, i, newDoc);
-            newDoc.Close();
+                if (!Directory.Exists(outputDir))
+                    Directory.CreateDirectory(outputDir);
+
+                using (PdfDocument pdfDoc = new PdfDocument(new PdfReader(inputPath)))
+                {
+                    int totalPages = pdfDoc.GetNumberOfPages();
+
+                    for (int i = 1; i <= totalPages; i++)
+                    {
+                        string tempFileName = $"pagina_{i}.pdf";
+                        string outputPath = Path.Combine(outputDir, tempFileName);
+
+                        // Splitta la pagina
+                        using (PdfDocument newDoc = new PdfDocument(new PdfWriter(outputPath)))
+                        {
+                            pdfDoc.CopyPagesTo(i, i, newDoc);
+                        }
+
+                        // Ora apri il PDF appena creato ed estrai il testo
+                        string estratto = EstraiTestoDaPagina(outputPath);
+
+                        // Estrai il nome operatore e il mese/anno
+                        var (nomeOperatore, meseAnno) = TrovaOperatoreEMeseAnno(estratto);
+                        
+                        if (!string.IsNullOrWhiteSpace(nomeOperatore) && !string.IsNullOrWhiteSpace(meseAnno))
+                        {
+                            // Pulisci il nome
+                            string[] nomeParti = nomeOperatore.Split(' ');
+                            string cognome = nomeParti.Length > 0 ? nomeParti[0] : "";
+                            string nome = nomeParti.Length > 1 ? nomeParti[1] : "";
+
+                            string nuovoNome = Path.Combine(outputDir, $"{meseAnno}_Timesheet_{cognome}_{nome}.pdf");
+
+                            // Evita errori se il file esiste già
+                            if (!File.Exists(nuovoNome))
+                            {
+                                File.Move(outputPath, nuovoNome);
+                                Console.WriteLine($"Pagina {i} -> {nomeOperatore} ({meseAnno})");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Pagina {i} -> file già esistente. Saltata.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Pagina {i} -> nome operatore o mese/anno non trovato.");
+                        }
+                    }
+
+                    Console.WriteLine($"Splittate {totalPages} pagine in {outputDir}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Errore: {ex.Message}");
+            }
+
+            Console.ReadKey();
         }
 
-        Debug.Assert(pdfDoc != null, nameof(pdfDoc) + " != null");
-        pdfDoc.Close();
+        static string EstraiTestoDaPagina(string filePath)
+        {
+            using (var pdfDoc = new PdfDocument(new PdfReader(filePath)))
+            {
+                var strategy = new SimpleTextExtractionStrategy();
+                return PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(1), strategy);
+            }
+        }
 
-    Console.WriteLine($"Splittate {totalPages} pagine in {outputDir}");
+        
+
+
+static (string? nomeOperatore, string? meseAnno) TrovaOperatoreEMeseAnno(string testo)
+{
+    string? nomeOperatore = null;
+    string? meseAnno = null;
+    
+    foreach (var line in testo.Split('\n'))
+    {
+        Console.WriteLine($"Linea esaminata: {line}");
+    
+        if (line.ToLower().Contains("operatore"))
+        {
+            // Metti le parole in un array
+            string[] parole = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+    
+            // Verifica che ci siano abbastanza parole per evitare errori
+            // Dovrebbe esserci almeno 8 parole per avere mese, anno, cognome e nome
+            if (parole.Length >= 8)
+            {
+                // Estrai il mese e l'anno
+                string? mese = parole.ElementAtOrDefault(4); // Quinta parola
+                string? anno = parole.ElementAtOrDefault(5); // Sesta parola
+    
+                if (!string.IsNullOrWhiteSpace(mese) && !string.IsNullOrWhiteSpace(anno) && int.TryParse(anno, out _))
+                {
+                    string meseNumerico = GetMeseNumerico(mese);
+                    meseAnno = $"{anno}{meseNumerico}";
+                }
+                
+                // Estrai il cognome e il nome, ignorando eventuale codice fiscale
+                string cognome = parole[6]; // Settima parola
+                string nome = parole[7]; // Ottava parola
+                
+                nomeOperatore = $"{cognome} {nome}";
+            }
+        }
+    }
+
+    return (nomeOperatore?.Trim(), meseAnno?.Trim());
     }
         
+    static string GetMeseNumerico(string mese)
+        {
+            switch (mese.ToUpper())
+            {
+                case "GENNAIO": return "01";
+                case "FEBBRAIO": return "02";
+                case "MARZO": return "03";
+                case "APRILE": return "04";
+                case "MAGGIO": return "05";
+                case "GIUGNO": return "06";
+                case "LUGLIO": return "07";
+                case "AGOSTO": return "08";
+                case "SETTEMBRE": return "09";
+                case "OTTOBRE": return "10";
+                case "NOVEMBRE": return "11";
+                case "DICEMBRE": return "12";
+                default: return "";
+            }
+        }
+    }
 }

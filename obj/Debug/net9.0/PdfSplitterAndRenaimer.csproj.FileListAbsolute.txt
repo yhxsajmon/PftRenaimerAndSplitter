@@ -35,3 +35,8 @@ C:\Users\yhxsa\RiderProjects\PdfSplitterAndRenaimer\PdfSplitterAndRenaimer\obj\D
 C:\Users\yhxsa\RiderProjects\PdfSplitterAndRenaimer\PdfSplitterAndRenaimer\obj\Debug\net9.0\PdfSplitterAndRenaimer.pdb
 C:\Users\yhxsa\RiderProjects\PdfSplitterAndRenaimer\PdfSplitterAndRenaimer\obj\Debug\net9.0\PdfSplitterAndRenaimer.genruntimeconfig.cache
 C:\Users\yhxsa\RiderProjects\PdfSplitterAndRenaimer\PdfSplitterAndRenaimer\obj\Debug\net9.0\ref\PdfSplitterAndRenaimer.dll
+C:\Users\yhxsa\RiderProjects\PdfSplitterAndRenaimer\PdfSplitterAndRenaimer\bin\Debug\net9.0\input.pdf
+C:\Users\yhxsa\RiderProjects\PdfSplitterAndRenaimer\PdfSplitterAndRenaimer\obj\Debug\net9.0\PdfSplitterAndRenaimer.sourcelink.json
+C:\Users\yhxsa\RiderProjects\PdfSplitterAndRenaimer\PdfSplitterAndRenaimer\bin\Debug\net9.0\BouncyCastle.Crypto.dll
+C:\Users\yhxsa\RiderProjects\PdfSplitterAndRenaimer\PdfSplitterAndRenaimer\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
+C:\Users\yhxsa\RiderProjects\PdfSplitterAndRenaimer\PdfSplitterAndRenaimer\bin\Debug\net9.0\itext.bouncy-castle-adapter.dll

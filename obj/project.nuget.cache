@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "P6RM79Lygl8=",
+  "dgSpecHash": "sLaAOxuUZs0=",
   "success": true,
   "projectFilePath": "C:\\Users\\yhxsa\\RiderProjects\\PdfSplitterAndRenaimer\\PdfSplitterAndRenaimer\\PdfSplitterAndRenaimer.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\yhxsa\\.nuget\\packages\\bouncycastle\\1.8.9\\bouncycastle.1.8.9.nupkg.sha512",
+    "C:\\Users\\yhxsa\\.nuget\\packages\\bouncycastle.cryptography\\2.4.0\\bouncycastle.cryptography.2.4.0.nupkg.sha512",
     "C:\\Users\\yhxsa\\.nuget\\packages\\itext\\9.1.0\\itext.9.1.0.nupkg.sha512",
+    "C:\\Users\\yhxsa\\.nuget\\packages\\itext.bouncy-castle-adapter\\9.1.0\\itext.bouncy-castle-adapter.9.1.0.nupkg.sha512",
     "C:\\Users\\yhxsa\\.nuget\\packages\\itext.commons\\9.1.0\\itext.commons.9.1.0.nupkg.sha512",
     "C:\\Users\\yhxsa\\.nuget\\packages\\itext7\\9.1.0\\itext7.9.1.0.nupkg.sha512",
+    "C:\\Users\\yhxsa\\.nuget\\packages\\itext7.bouncy-castle-adapter\\9.1.0\\itext7.bouncy-castle-adapter.9.1.0.nupkg.sha512",
     "C:\\Users\\yhxsa\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\1.1.0\\microsoft.dotnet.platformabstractions.1.1.0.nupkg.sha512",
     "C:\\Users\\yhxsa\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.0\\microsoft.extensions.dependencyinjection.5.0.0.nupkg.sha512",
     "C:\\Users\\yhxsa\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
@@ -83,5 +87,46 @@
     "C:\\Users\\yhxsa\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\yhxsa\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'BouncyCastle' 1.8.9 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-8xfc-gm6g-vgpv",
+      "libraryId": "BouncyCastle",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'BouncyCastle' 1.8.9 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-m44j-cfrm-g8qc",
+      "libraryId": "BouncyCastle",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'BouncyCastle' 1.8.9 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-v435-xc8x-wvr9",
+      "libraryId": "BouncyCastle",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'BouncyCastle 1.8.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "BouncyCastle",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

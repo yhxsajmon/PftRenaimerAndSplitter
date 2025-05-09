@@ -8,10 +8,28 @@
     ".NETCoreApp,Version=v9.0": {
       "PdfSplitterAndRenaimer/1.0.0": {
         "dependencies": {
-          "itext7": "9.1.0"
+          "BouncyCastle": "1.8.9",
+          "itext7": "9.1.0",
+          "itext7.bouncy-castle-adapter": "9.1.0"
         },
         "runtime": {
           "PdfSplitterAndRenaimer.dll": {}
+        }
+      },
+      "BouncyCastle/1.8.9": {
+        "runtime": {
+          "lib/BouncyCastle.Crypto.dll": {
+            "assemblyVersion": "1.8.9.0",
+            "fileVersion": "1.8.20343.1"
+          }
+        }
+      },
+      "BouncyCastle.Cryptography/2.4.0": {
+        "runtime": {
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.4.0.33771"
+          }
         }
       },
       "itext/9.1.0": {
@@ -79,6 +97,18 @@
           }
         }
       },
+      "itext.bouncy-castle-adapter/9.1.0": {
+        "dependencies": {
+          "BouncyCastle.Cryptography": "2.4.0",
+          "itext.commons": "9.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/itext.bouncy-castle-adapter.dll": {
+            "assemblyVersion": "9.1.0.0",
+            "fileVersion": "9.1.0.0"
+          }
+        }
+      },
       "itext.commons/9.1.0": {
         "dependencies": {
           "Microsoft.Extensions.Logging": "5.0.0",
@@ -94,6 +124,11 @@
       "itext7/9.1.0": {
         "dependencies": {
           "itext": "9.1.0"
+        }
+      },
+      "itext7.bouncy-castle-adapter/9.1.0": {
+        "dependencies": {
+          "itext.bouncy-castle-adapter": "9.1.0"
         }
       },
       "Microsoft.DotNet.PlatformAbstractions/1.1.0": {
@@ -735,12 +770,33 @@
       "serviceable": false,
       "sha512": ""
     },
+    "BouncyCastle/1.8.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-axnBgvdD5n+FnEG6efk/tfKuMFru7R/EoISH9zjh319yb3HD24TEHSAbNN/lTRT2ulOGRxDgOsCjkuk08iwWPg==",
+      "path": "bouncycastle/1.8.9",
+      "hashPath": "bouncycastle.1.8.9.nupkg.sha512"
+    },
+    "BouncyCastle.Cryptography/2.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SwXsAV3sMvAU/Nn31pbjhWurYSjJ+/giI/0n6tCrYoupEK34iIHCuk3STAd9fx8yudM85KkLSVdn951vTng/vQ==",
+      "path": "bouncycastle.cryptography/2.4.0",
+      "hashPath": "bouncycastle.cryptography.2.4.0.nupkg.sha512"
+    },
     "itext/9.1.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-4aPC+8MlF78KX7/Ad0BusGpliO5RMNzJU/jOxoDrHLpP92go3fKcaULVIhuaX24gnaJpoCX5Xf+HfvhcBdEjYw==",
       "path": "itext/9.1.0",
       "hashPath": "itext.9.1.0.nupkg.sha512"
+    },
+    "itext.bouncy-castle-adapter/9.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1SVA5zIvvTX02+eIOTkYb7efwnY1oEmAPR2JuF15KcDTCp0eOPgRqfcujiDqR+xdxAqs8viFWvGZePcl7T0YhA==",
+      "path": "itext.bouncy-castle-adapter/9.1.0",
+      "hashPath": "itext.bouncy-castle-adapter.9.1.0.nupkg.sha512"
     },
     "itext.commons/9.1.0": {
       "type": "package",
@@ -755,6 +811,13 @@
       "sha512": "sha512-xHRttMKi/9W7XDIIWRgMoau3Eo2+4JvctqN25X8a0k8uHFf56WgIMjFnGadH1nACJy+5ABi3XoWvJsUv20Wd2w==",
       "path": "itext7/9.1.0",
       "hashPath": "itext7.9.1.0.nupkg.sha512"
+    },
+    "itext7.bouncy-castle-adapter/9.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FN8QFUA9oYnrCNRZrDYWpK8gU8AFszaKbSwuYS7nFiPr5WlMcPREb6G+JJ9NO1BEKaqJbRH079OJgAgjmQpRjg==",
+      "path": "itext7.bouncy-castle-adapter/9.1.0",
+      "hashPath": "itext7.bouncy-castle-adapter.9.1.0.nupkg.sha512"
     },
     "Microsoft.DotNet.PlatformAbstractions/1.1.0": {
       "type": "package",
