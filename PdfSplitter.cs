@@ -45,11 +45,17 @@ namespace PdfSplitterAndRenaimer
                         
                         if (!string.IsNullOrWhiteSpace(nomeOperatore) && !string.IsNullOrWhiteSpace(meseAnno))
                         {
+
+                            
                             // Pulisci il nome
                             string[] nomeParti = nomeOperatore.Split(' ');
                             string cognome = nomeParti.Length > 0 ? nomeParti[0] : "";
-                            string nome = nomeParti.Length > 1 ? nomeParti[1] : "";
+                            
+                            string nome = string.Join(" ", nomeParti.Skip(1));
 
+                            
+                            nome = nome.Replace(" ", "_");
+                            Console.WriteLine($"Nome: {nome}");
                             string nuovoNome = Path.Combine(outputDir, $"{meseAnno}_Timesheet_{cognome}_{nome}.pdf");
 
                             // Evita errori se il file esiste già
@@ -91,46 +97,51 @@ namespace PdfSplitterAndRenaimer
 
         
 
-
-static (string? nomeOperatore, string? meseAnno) TrovaOperatoreEMeseAnno(string testo)
-{
-    string? nomeOperatore = null;
-    string? meseAnno = null;
-    
-    foreach (var line in testo.Split('\n'))
-    {
-        Console.WriteLine($"Linea esaminata: {line}");
-    
-        if (line.ToLower().Contains("operatore"))
+        static (string? nomeOperatore, string? meseAnno) TrovaOperatoreEMeseAnno(string testo)
         {
-            // Metti le parole in un array
-            string[] parole = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-    
-            // Verifica che ci siano abbastanza parole per evitare errori
-            // Dovrebbe esserci almeno 8 parole per avere mese, anno, cognome e nome
-            if (parole.Length >= 8)
-            {
-                // Estrai il mese e l'anno
-                string? mese = parole.ElementAtOrDefault(4); // Quinta parola
-                string? anno = parole.ElementAtOrDefault(5); // Sesta parola
-    
-                if (!string.IsNullOrWhiteSpace(mese) && !string.IsNullOrWhiteSpace(anno) && int.TryParse(anno, out _))
-                {
-                    string meseNumerico = GetMeseNumerico(mese);
-                    meseAnno = $"{anno}{meseNumerico}";
-                }
-                
-                // Estrai il cognome e il nome, ignorando eventuale codice fiscale
-                string cognome = parole[6]; // Settima parola
-                string nome = parole[7]; // Ottava parola
-                
-                nomeOperatore = $"{cognome} {nome}";
-            }
-        }
-    }
+            string? nomeOperatore = null;
+            string? meseAnno = null;
 
-    return (nomeOperatore?.Trim(), meseAnno?.Trim());
-    }
+            foreach (var line in testo.Split('\n'))
+            {
+
+                if (line.ToLower().Contains("operatore"))
+                {
+                    Console.WriteLine($"{line}\n");
+                    string[] parole = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+                    if (parole.Length >= 8)
+                    {
+                        string mese = parole.ElementAtOrDefault(4);
+                        string anno = parole.ElementAtOrDefault(5);
+
+                        if (!string.IsNullOrWhiteSpace(mese) && !string.IsNullOrWhiteSpace(anno) && int.TryParse(anno, out _))
+                        {
+                            string meseNumerico = GetMeseNumerico(mese);
+                            meseAnno = $"{anno}{meseNumerico}";
+                        }
+
+                        string cognome = parole[6];
+                        Console.WriteLine($"Cognome: {cognome}");
+                        var nomeParti = parole.Skip(7).ToList();
+                        
+                        // Rimuovi il codice fiscale se presente (16 caratteri)
+                        if (nomeParti.Count > 1 && nomeParti.Last().Length == 16)
+                            nomeParti.RemoveAt(nomeParti.Count - 1);
+                        Console.WriteLine($"Nome parti: {string.Join(" ", nomeParti)}");
+
+                        // Non rimuovere nessun elemento da nomeParti; usa il contenuto completo
+                        string nome = string.Join(" ", nomeParti);
+                        Console.WriteLine($"Nome: {nome}");
+                        // Unisci cognome e nome
+                        nomeOperatore = $"{cognome} {nome}";
+                        Console.WriteLine($"Nome operatore: {nomeOperatore}");
+                    }
+                }
+            }
+
+            return (nomeOperatore?.Trim(), meseAnno?.Trim());
+        }
         
     static string GetMeseNumerico(string mese)
         {
