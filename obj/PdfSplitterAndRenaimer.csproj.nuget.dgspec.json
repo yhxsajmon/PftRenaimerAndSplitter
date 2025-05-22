@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yhxsa\\RiderProjects\\PdfSplitterAndRenaimer\\PdfSplitterAndRenaimer\\PdfSplitterAndRenaimer.csproj": {}
+    "C:\\Users\\smyslihaka\\Documents\\PdfSplitter\\PftRenaimerAndSplitter\\PdfSplitterAndRenaimer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yhxsa\\RiderProjects\\PdfSplitterAndRenaimer\\PdfSplitterAndRenaimer\\PdfSplitterAndRenaimer.csproj": {
+    "C:\\Users\\smyslihaka\\Documents\\PdfSplitter\\PftRenaimerAndSplitter\\PdfSplitterAndRenaimer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yhxsa\\RiderProjects\\PdfSplitterAndRenaimer\\PdfSplitterAndRenaimer\\PdfSplitterAndRenaimer.csproj",
+        "projectUniqueName": "C:\\Users\\smyslihaka\\Documents\\PdfSplitter\\PftRenaimerAndSplitter\\PdfSplitterAndRenaimer.csproj",
         "projectName": "PdfSplitterAndRenaimer",
-        "projectPath": "C:\\Users\\yhxsa\\RiderProjects\\PdfSplitterAndRenaimer\\PdfSplitterAndRenaimer\\PdfSplitterAndRenaimer.csproj",
-        "packagesPath": "C:\\Users\\yhxsa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yhxsa\\RiderProjects\\PdfSplitterAndRenaimer\\PdfSplitterAndRenaimer\\obj\\",
+        "projectPath": "C:\\Users\\smyslihaka\\Documents\\PdfSplitter\\PftRenaimerAndSplitter\\PdfSplitterAndRenaimer.csproj",
+        "packagesPath": "C:\\Users\\smyslihaka\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\smyslihaka\\Documents\\PdfSplitter\\PftRenaimerAndSplitter\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\yhxsa\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\smyslihaka\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -37,7 +37,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -46,6 +47,12 @@
             "BouncyCastle": {
               "target": "Package",
               "version": "[1.8.9, )"
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.16, )",
+              "autoReferenced": true
             },
             "itext7": {
               "target": "Package",
@@ -67,12 +74,47 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.16, 8.0.16]"
+            },
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+              "version": "[8.0.16, 8.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.16, 8.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.16, 8.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[8.0.16, 8.0.16]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.16, 8.0.16]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+              "version": "[8.0.16, 8.0.16]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.408/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
         }
       }
     }

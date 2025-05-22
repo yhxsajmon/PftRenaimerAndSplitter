@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PdfSplitterAndRenaimer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+65b7ef17b9be3a06693df3d5795e41634cfefeb1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c27f791fbd05317dd277b50e978beb2e505339b")]
 [assembly: System.Reflection.AssemblyProductAttribute("PdfSplitterAndRenaimer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PdfSplitterAndRenaimer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
