@@ -128,7 +128,6 @@ namespace PdfSplitterAndRenaimer
                         // Rimuovi il codice fiscale se presente (16 caratteri)
                         if (nomeParti.Count > 1 && nomeParti.Last().Length == 16)
                             nomeParti.RemoveAt(nomeParti.Count - 1);
-                        Console.WriteLine($"Nome parti: {string.Join(" ", nomeParti)}");
 
                         // Non rimuovere nessun elemento da nomeParti; usa il contenuto completo
                         string nome = string.Join(" ", nomeParti);
